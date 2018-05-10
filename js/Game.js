@@ -25,9 +25,7 @@
 		//图片加载器
 		this.res = {
 			"1":"images/bg.jpg",
-			"as":"images/as.png",
 			"girl":"images/sas.png",
-			"22":"images/22.jpg",
 			"fei":"images/fei.png",
 			"5":"images/5.jpg",
 			"2":"images/2.jpg",
