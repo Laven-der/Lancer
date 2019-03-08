@@ -1,5 +1,5 @@
 #Lancer
-#game
+#game-canvas
 ```
-2
+打开index.html，即可开始
 ```
