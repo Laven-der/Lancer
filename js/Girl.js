@@ -5,10 +5,10 @@
        this.y  =460;
        this.x =200;
     	this.i = 0;      //切换图片的标志  
-       console.log(this.image)
+       //console.log(this.image)
     	this.w = this.image.width / 12,  
     	this.h = this.image.height / 4;  
-       	console.log(this.h);
+       	//console.log(this.h);
     	this.flag = 0;   //方向的标志  
     	this.direction = null;
     	this.Ismove=false;
@@ -101,7 +101,7 @@
 			}
 			this.i++;  
         this.i = this.i % 8;
-        // console.log(this.x,this.y)
+        // //console.log(this.x,this.y)
 	    if(this.x < 0 || this.x > 960 -60 || this.y < 250 || this.y > 600 - 100){
 					this.x = oldx;
 					this.y = oldy;

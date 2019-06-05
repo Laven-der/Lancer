@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		background-color:#2D3538;
+	}
+		 canvas{
+        	margin-left: 190px;
+        	position: relative;
+    }
+  div{
+    	position: absolute;
+    	width: 174px;
+    	height: 128px;
+    	background:url(images/shizhi.gif);
+    	top: 100px;
+    	left: 580px;
+    	display: none;
+    }
+	</style>
+<body>
+    <canvas width ="960" height="600" id = "mycanvas">
+    对不起，您的浏览器不支持canvas
+  </canvas>
+<audio src="/audio/beijing.mp3 " autoplay loop></audio>
+<audio src="/audio/jn2.mp3"></audio>
+<audio src="/audio/jn.wav"></audio>
+<audio src="/audio/xl.wav"></audio>
+<audio src="/audio/sl.wav"></audio>
+ <div id = "shizhi"></div>
+</body>
+</html>
+<script src = "/js/underscore.js"></script>
+<script src = "/js/Game.js"></script>
+<script src = "/js/Girl.js"></script>
+<script src = "/js/Map.js"></script>
+<script src = "/js/Block.js"></script>
+<script src = "/js/tis.js"></script>
+<script src = "/js/scene.js"></script>
+<script src = "/js/Atk.js"></script>
+
+<script>
+      var game = new Game();
+      document.querySelectorAll("audio")[0].volume=0.1;
+      document.querySelectorAll("audio")[2].volume=0.3;
+      document.querySelectorAll("audio")[3].volume=0.7;
+</script>

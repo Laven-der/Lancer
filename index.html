@@ -1,50 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-	body{
-		background-color:#2D3538;
-	}
-		 canvas{
-        	margin-left: 190px;
-        	position: relative;
-    }
-  div{
-    	position: absolute;
-    	width: 174px;
-    	height: 128px;
-    	background:url(images/shizhi.gif);
-    	top: 100px;
-    	left: 580px;
-    	display: none;
-    }
-	</style>
-<body>
-    <canvas width ="960" height="600" id = "mycanvas">
-    对不起，您的浏览器不支持canvas
-  </canvas>
-<audio src="audio/beijing.mp3 " autoplay loop></audio>
-<audio src="audio/jn2.mp3"></audio>
-<audio src="audio/jn.wav"></audio>
-<audio src="audio/xl.wav"></audio>
-<audio src="audio/sl.wav"></audio>
- <div id = "shizhi"></div>
-</body>
-</html>
-<script src = "js/underscore.js"></script>
-<script src = "js/Game.js"></script>
-<script src = "js/Girl.js"></script>
-<script src = "js/Map.js"></script>
-<script src = "js/Block.js"></script>
-<script src = "js/Tis.js"></script>
-<script src = "js/Scene.js"></script>
-<script src = "js/Atk.js"></script>
 
-<script>
-      var game = new Game();
-      document.querySelectorAll("audio")[0].volume=0.1;
-      document.querySelectorAll("audio")[2].volume=0.3;
-      document.querySelectorAll("audio")[3].volume=0.7;
-</script>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title></title>
+    <script src="/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=72ebbcbb22365b5a10dff680a54081f7&plugin=AMap.DistrictSearch,AMap.Geocoder">
+    </script>
+      <style>
+        .amap-toolbar {
+            display: none;
+        }
+
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            height: 100%;
+        }
+
+        .amap-marker-label {
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        .rescueContent {
+            color: #da0000;
+        }
+
+        .amap-logo,
+        .amap-copyright {
+            display: none;
+            opacity: 0;
+        }
+
+        #showTable {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: none;
+        }
+
+        #showTable>table {
+            position: absolute;
+            top: 0px;
+            right: 44%;
+            display: flex;
+            padding: 15px 20px 15px 20px;
+            border: 1px solid #eee;
+            width: 300px;
+            height: 290px;
+            background: #fff;
+            font-size: 14px;
+            line-height: 14px;
+            color: #888;
+            border-collapse: collapse;
+            font-family: "微软雅黑";
+            box-shadow: 2px -5px 2px 2px #888;
+            z-index: 99;
+            border-radius: 6px;
+        }
+
+        #showTable>table tr {
+            width: 150px;
+            height: 39px;
+            max-height: 39px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        #showTable>table tr:hover {
+            background: #eee;
+        }
+
+        #showTable>table tr td {
+            flex: 1;
+            padding: 10px;
+           
+        }
+
+        #showTable>table tr td {
+            width: 70px;
+        }
+
+        #showTable>table tr td.env{
+            max-width: 195px;
+            vertical-align: top;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #222;
+        }
+
+        #confirmBtn {
+            z-index: 9999;
+        }
+
+        #showTable>table #confirmBtn {
+            position: absolute;
+            bottom: 4%;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 5px;
+            background: #1ba0ef;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        #showTable>table  #confirmBtn:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        #showTable>table  #confirmBtn td {
+            position: absolute;
+            left: 36%;
+            top: -8px;
+        }
+
+        #searchdiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #eee;
+            padding: 15px 0 15px 20px;
+            margin-top: 20px;
+            width: 351px;
+            margin-left: 20px;
+            z-index: 99;
+            background: #fff;
+            box-shadow: 3px 3px 5px #888;
+        }
+
+        #searchdiv select {
+            float: left;
+            margin-right: 15px;
+            width: 100px;
+            height: 33px;
+            background: #fff;
+            outline: none;
+            border-color: #ccc;
+            /* box-shadow: 0 0 10px #9ecaed; */
+        }
+
+        #districtInputDiv {
+            padding-top: 4px;
+        }
+
+        #districtInputDiv>input {
+            border: 1px solid #ccc;
+            float: left;
+            color: #000;
+            font-family: 'Opan Sans', sans-serif;
+            font-size: 1em;
+            padding: 4px 16px;
+            transition: background 0.3s ease-in-out;
+            width: 240px;
+            margin-top: 20px;
+            height: 30px;
+            /* box-shadow: 0 0 10px #9ecaed; */
+        }
+
+        #districtInputDiv span.input-group-btn {
+            float: left;
+            margin-top: 20px;
+        }
+
+        #districtInputDiv>input:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 1px 1px 5px #169BD5;
+        }
+
+        #go {
+            display: inline-block;
+            padding: 9px 11px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            outline: none;
+        }
+
+        #go:hover {
+            border-color: #adadad;
+        }
+
+        .input-group .form-control:not(:first-child):not(:last-child),
+        .input-group-addon:not(:first-child):not(:last-child),
+        .input-group-btn:not(:first-child):not(:last-child) {
+            border-radius: 5px;
+        }
+
+        .x-tool-img {
+            margin-left: -2px;
+            margin-top: -4px
+        }
+
+        #result1 {
+            position: absolute;
+            left: 0;
+            margin-top: 104px;
+            padding-left: 20px;
+            max-height: 410px;
+            background: #fff;
+            width: 352px;
+            box-shadow: 3px 5px 5px #888;
+        }
+
+        #result1>div {
+            height: 30px;
+            margin-left: 5px;
+            line-height: 24px;
+            max-width: 340px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* //设置搜索点信息样式 */
+
+        #keywordSearchResult {
+            position: absolute;
+            top: 120px;
+            left: 0px;
+            width: 372px;
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 3px 5px 5px #888;
+        }
+
+        #keywordSearchResult>table>tbody {
+            width: 361px;
+            max-height: 410px;
+            overflow-y: scroll;
+            display: block;
+        }
+
+        #keywordSearchResult>table>tbody p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        #keywordSearchResult>table>tbody>tr {
+            box-shadow: 0px 2px 0 #169BD5;
+            margin-bottom: 10px;
+        }
+
+        #keywordSearchResult>table>tbody>tr>td {
+            width: 365px;
+        }
+
+        #keywordSearchResult>table>tbody>tr button,
+        .amap-info-content button.btn-default {
+            width: 90px;
+            height: 28px;
+            border-width: 0px;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: none;
+            font-family: Microsoft YaHei;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="alertAuto" class="alert alert-warning" style="position:absolute;left:500px;z-index:5555;margin-top: auto;text-align: center;visibility: hidden">
+    </div>
+    <div id="container">
+        <div id="rescueInfo" class="alert alert-success" style=" overflow:scroll;position:absolute;max-height:800px;left:100px;z-index:3000;margin-top: auto;text-align: center;visibility: hidden">
+        </div>
+        <div id="showTable">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="env"></td>
+                    </tr>
+                    <tr id="confirmBtn">
+                        <td>设置</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/getcoord.js">
+    </script>
+</body>

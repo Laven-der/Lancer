@@ -197,7 +197,7 @@
 		self.ctx.fillText(self.scene.fays,488,542);
 		self.ctx.restore();
 		}
-		console.log(self.girl.x,self.girl.y)
+		//console.log(self.girl.x,self.girl.y)
 			// self.foe.render();
 			// self.ctx.fillText(self.scene.sceneNumber,300,20)
 			//设置帧的样式

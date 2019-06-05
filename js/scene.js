@@ -84,7 +84,7 @@
 			//生成游戏背景
 		//更新和渲染
 			game.map.render();
-			// console.log(game.girl.live)//猪脚血量
+			// //console.log(game.girl.live)//猪脚血量
 			if(game.girl.Ismove){
 			game.girl.update();}
 			game.girl.render();
@@ -133,7 +133,7 @@
                 		document.querySelectorAll("audio")[1].play()
                 		game.beginn =true;
                 		game.begins =true;
-                		console.log("女孩生命值"+game.girl.live)
+                		//console.log("女孩生命值"+game.girl.live)
 					if(game.girl.live<=0){
 		// var string = "江湖险恶，出师未捷身先死……"
   //       this.n+=3;
@@ -192,7 +192,7 @@
 					this.x=-10;
 				}if(game.atk.live<=0){
 						//怪已经死亡
-						console.log("wosil");
+						//console.log("wosil");
 						game.sxs=false;
 						this.atks=_.random(13,56);
 						this.lives=_.random(30,50);
@@ -212,7 +212,7 @@
 			game.beginn=false;
     	}if(game.atk.live<=0){
 						//怪已经死亡
-						console.log("wosil");
+						//console.log("wosil");
 						game.sxs=false;
 						this.atks=_.random(10,28);
 						this.lives=_.random(30,50);
