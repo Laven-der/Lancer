@@ -4,12 +4,12 @@
 		this.image = game.res["girl"]
 		this.y = 460;
 		this.x = 200;
-		this.i = 0;      //切换图片的标志  
+		this.i = 0; //切换图片的标志  
 		//console.log(this.image)
 		this.w = this.image.width / 12,
 			this.h = this.image.height / 4;
 		//console.log(this.h);
-		this.flag = 0;   //方向的标志  
+		this.flag = 0; //方向的标志  
 		this.direction = null;
 		this.Ismove = false;
 		//攻击力
@@ -76,7 +76,8 @@
 				h += 32;
 				if (h > 300) {
 					h = 40;
-				} this.td.style.left = h + "px";
+				}
+				this.td.style.left = h + "px";
 				break;
 			case "D":
 				this.y += n;
@@ -128,4 +129,3 @@
 		this.y2 = parseInt(this.y + 32.5);
 	}
 })()
-

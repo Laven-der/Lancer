@@ -19,15 +19,13 @@
         if (game.str == 1) {
             document.querySelector("#shizhi").style.display = "block";
             // game.ctx.drawImage(this.image,this.x, this.y); 
-        }
-        else if (game.str == 3) {
+        } else if (game.str == 3) {
             game.ctx.drawImage(game.res["fei"], 340, 100, 220, 163);
             game.f % 8 == 0 && this.n++;
             if (this.n > 10) {
                 this.n = 6;
             }
-        }
-        else if (game.str == 4) {
+        } else if (game.str == 4) {
             game.ctx.drawImage(game.res["nvs"], this.x, 130 + this.n, 220, 210);
             game.f % 8 == 0 && this.n++;
             if (this.n > 10) {
@@ -80,7 +78,7 @@
 
                 if (game.girl.x1 > 480) {
                     game.girl.live += 10;
-                }//此时是保护期，可以自动的把血量恢复到200；
+                } //此时是保护期，可以自动的把血量恢复到200；
                 game.girl.x = 510;
             }
             if (game.girl.live >= 200) {

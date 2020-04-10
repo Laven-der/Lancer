@@ -33,7 +33,7 @@
 				game.str -= 1;
 				game.girl.y = this.xy + 7;
 				game.map.image = game.res["bgt"];
-				game.girl.y = this.xy + 7;//使得每次遇到怪后将自己位置向下移动，避免出来时再次遇到怪。
+				game.girl.y = this.xy + 7; //使得每次遇到怪后将自己位置向下移动，避免出来时再次遇到怪。
 				game.atk = new Atk();
 				break;
 			case 3:
@@ -192,7 +192,8 @@
 			game.begin = false;
 
 			this.x = -10;
-		} if (game.atk.live <= 0) {
+		}
+		if (game.atk.live <= 0) {
 			//怪已经死亡
 			//console.log("wosil");
 			game.sxs = false;
@@ -212,7 +213,8 @@
 			game.atk.live -= game.girl.atk - game.atk.fay;
 			this.kn = -20;
 			game.beginn = false;
-		} if (game.atk.live <= 0) {
+		}
+		if (game.atk.live <= 0) {
 			//怪已经死亡
 			//console.log("wosil");
 			game.sxs = false;
